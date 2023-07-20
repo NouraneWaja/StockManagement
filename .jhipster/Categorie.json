@@ -1,0 +1,18 @@
+{
+  "applications": "*",
+  "changelogDate": "20230711170945",
+  "entityTableName": "categorie",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Categorie",
+  "relationships": [],
+  "searchEngine": "no"
+}

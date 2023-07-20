@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="categorie">
+      <h2 data-cy="categorieDetailsHeading" class="titre"><span jhiTranslate="stockManagementApp.categorie.detail.title">Categorie</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd class="element">
+          <span>{{ categorie.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="stockManagementApp.categorie.nom">Nom</span></dt>
+        <dd class="element">
+          <span>{{ categorie.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="stockManagementApp.categorie.description">Description</span></dt>
+        <dd class="element">
+          <span>{{ categorie.description }}</span>
+        </dd>
+      </dl>
+      <div class="bouton">
+      <button type="submit" (click)="previousState()" class="btn btn-outline-success" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <!--<button type="button" [routerLink]="['/categorie', categorie.id, 'edit']" class="btn btn-outline-primary" >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit" >Editer</span>
+      </button>--->
+      </div>
+    </div>
+  </div>
+</div>

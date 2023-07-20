@@ -1,0 +1,8 @@
+{
+  "home": {
+    "title": "Bienvenue dans 'MyStock'",
+    "logged": {
+      "message": "Vous êtes connecté en tant que \"{{username}}\"."
+    }
+  }
+}

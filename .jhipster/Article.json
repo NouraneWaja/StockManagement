@@ -1,0 +1,34 @@
+{
+  "applications": "*",
+  "changelogDate": "20230711170944",
+  "entityTableName": "article",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantite",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "prix",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "codebarres",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Article",
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "categorie",
+      "relationshipName": "categorie",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

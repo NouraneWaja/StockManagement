@@ -1,0 +1,16 @@
+
+entity Categorie {
+	nom String,
+    description String
+}
+
+entity Article {
+	nom String,
+    quantite Integer,
+    prix Float,
+    codebarres String
+}
+
+relationship ManyToOne {
+	Article{categorie(nom)} to Categorie
+}
