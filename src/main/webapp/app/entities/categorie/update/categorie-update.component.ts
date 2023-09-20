@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategorieFormService, CategorieFormGroup } from './categorie-form.service';
 import { ICategorie } from '../categorie.model';
 import { CategorieService } from '../service/categorie.service';
+import { CATEGORY_ALREADY_USED_TYPE } from 'app/config/error.constants';
 
 @Component({
   standalone: true,
@@ -20,6 +21,8 @@ import { CategorieService } from '../service/categorie.service';
 export class CategorieUpdateComponent implements OnInit {
   isSaving = false;
   categorie: ICategorie | null = null;
+
+  errorCategoryExists=false;
 
   editForm: CategorieFormGroup = this.categorieFormService.createCategorieFormGroup();
 
@@ -43,6 +46,7 @@ export class CategorieUpdateComponent implements OnInit {
   }
 
   save(): void {
+    this.errorCategoryExists = false;
     this.isSaving = true;
     const categorie = this.categorieFormService.getCategorie(this.editForm);
     if (categorie.id !== null) {
@@ -53,10 +57,21 @@ export class CategorieUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICategorie>>): void {
-    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
-      next: () => this.onSaveSuccess(),
-      error: () => this.onSaveError(),
-    });
+     result.subscribe(
+         (res: HttpResponse<ICategorie>) => {
+                    this.onSaveSuccess();
+                },
+         (errorResponse: HttpErrorResponse) => {
+              if (errorResponse.status === 400 && errorResponse.error.type === CATEGORY_ALREADY_USED_TYPE) {
+                    // La categorie existe déjà
+                    this.errorCategoryExists = true;
+              }
+              else {
+              this.onSaveError()
+              }
+              this.onSaveFinalize();
+              }
+            );
   }
 
   protected onSaveSuccess(): void {

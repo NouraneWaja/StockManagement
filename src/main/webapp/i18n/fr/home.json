@@ -3,6 +3,8 @@
     "title": "Bienvenue dans 'MyStock'",
     "logged": {
       "message": "Vous êtes connecté en tant que \"{{username}}\"."
-    }
+    },
+    "article": "Nombre total d'articles ",
+    "utilisateur": "Nombre total d'utilisateurs "
   }
 }

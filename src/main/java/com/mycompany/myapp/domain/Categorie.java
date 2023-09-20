@@ -18,13 +18,12 @@ public class Categorie implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nom")
+    @Column(name = "nom", unique = true)
     private String nom;
 
     @Column(name = "description")
     private String description;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
         return this.id;
@@ -65,7 +64,6 @@ public class Categorie implements Serializable {
         this.description = description;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

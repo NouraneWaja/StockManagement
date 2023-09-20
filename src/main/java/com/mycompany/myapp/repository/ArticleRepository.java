@@ -14,6 +14,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
+
+    Optional<Article> findByCodebarres(String codebarres);
+
     default Optional<Article> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }

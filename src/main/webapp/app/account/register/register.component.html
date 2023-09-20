@@ -4,7 +4,7 @@
       <h1 jhiTranslate="register.title" data-cy="registerTitle" class="titre">Création de compte utilisateur</h1>
 
       <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
-        <strong>Compte enregistré !</strong> Merci de vérifier votre email de confirmation.
+        <strong>Compte enregistré !</strong>
       </div>
 
       <div class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
@@ -168,7 +168,7 @@
 
         <div class="mb-3">
           <label class="form-label" for="confirmPassword" jhiTranslate="global.form.confirmpassword.label"
-            >Confirmation du nouveau mot de passe</label
+          >Confirmation du nouveau mot de passe</label
           >
           <input
             type="password"

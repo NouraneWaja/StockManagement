@@ -8,6 +8,7 @@
         "createOrEditLabel": "Créer ou éditer un Article",
         "notFound": "Aucun Article trouvé"
       },
+      "error": "Codebarres existe déja",
       "created": "Un nouveau Article a été créé avec l'identifiant {{ param }}",
       "updated": "Le Article avec l'identifiant {{ param }} a été mis à jour",
       "deleted": "Le Article avec l'identifiant {{ param }} a été supprimé",

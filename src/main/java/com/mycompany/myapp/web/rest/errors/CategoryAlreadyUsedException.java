@@ -1,22 +1,24 @@
 package com.mycompany.myapp.web.rest.errors;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.ErrorResponseException;
 import tech.jhipster.web.rest.errors.ProblemDetailWithCause;
 
-@SuppressWarnings("java:S110") // Inheritance tree of classes should not be too deep
-public class LoginAlreadyUsedException extends ErrorResponseException {
+@SuppressWarnings("java:S110")
+public class CategoryAlreadyUsedException extends ErrorResponseException {
 
     private static final long serialVersionUID = 1L;
 
-    public LoginAlreadyUsedException() {
+
+    public CategoryAlreadyUsedException() {
         super(
             HttpStatus.BAD_REQUEST,
             ProblemDetailWithCause.ProblemDetailWithCauseBuilder
                 .instance()
                 .withStatus(HttpStatus.BAD_REQUEST.value())
-                .withType(ErrorConstants.INVALID_PASSWORD_TYPE)
-                .withTitle("Login already used")
+                .withType(ErrorConstants.CATEGORY_ALREADY_USED_TYPE)
+                .withTitle("categorie existe")
                 .build(),
             null
         );

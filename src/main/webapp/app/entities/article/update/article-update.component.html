@@ -5,6 +5,7 @@
         Créer ou éditer un Article
       </h2>
 
+
       <div>
         <jhi-alert-error></jhi-alert-error>
 
@@ -38,6 +39,9 @@
             data-cy="codebarres"
             formControlName="codebarres"
           />
+          <div class="form-text text-danger" *ngIf="errorCodebarresExists" jhiTranslate="stockManagementApp.article.error">
+            <strong>Ce codebarres est déjà utilisé !</strong>
+          </div>
         </div>
 
         <div class="mb-3">

@@ -8,6 +8,7 @@
         "createOrEditLabel": "Create or edit a Article",
         "notFound": "No Articles found"
       },
+      "error": "Codebarres exists",
       "created": "A new Article is created with identifier {{ param }}",
       "updated": "A Article is updated with identifier {{ param }}",
       "deleted": "A Article is deleted with identifier {{ param }}",

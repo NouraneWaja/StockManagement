@@ -8,6 +8,7 @@
         "createOrEditLabel": "Create or edit a Categorie",
         "notFound": "No Categories found"
       },
+      "error": "Category exists",
       "created": "A new Categorie is created with identifier {{ param }}",
       "updated": "A Categorie is updated with identifier {{ param }}",
       "deleted": "A Categorie is deleted with identifier {{ param }}",

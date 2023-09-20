@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import com.mycompany.myapp.web.rest.errors.CodebarresAlreadyUsedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,6 +56,12 @@ public class ArticleResource {
     @PostMapping("/articles")
     public ResponseEntity<Article> createArticle(@RequestBody Article article) throws URISyntaxException {
         log.debug("REST request to save Article : {}", article);
+
+        // Vérifier si un article avec le même Codebarres existe déjà
+        Optional<Article> existingArticle = articleRepository.findByCodebarres(article.getCodebarres());
+        if (existingArticle.isPresent()) {
+            throw new CodebarresAlreadyUsedException();
+        }
         if (article.getId() != null) {
             throw new BadRequestAlertException("A new article cannot already have an ID", ENTITY_NAME, "idexists");
         }

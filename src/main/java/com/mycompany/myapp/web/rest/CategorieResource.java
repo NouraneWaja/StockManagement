@@ -1,5 +1,6 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.Article;
 import com.mycompany.myapp.domain.Categorie;
 import com.mycompany.myapp.repository.CategorieRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
@@ -9,6 +10,9 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import com.mycompany.myapp.web.rest.errors.CategoryAlreadyUsedException;
+import com.mycompany.myapp.web.rest.errors.CodebarresAlreadyUsedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,6 +54,13 @@ public class CategorieResource {
     @PostMapping("/categories")
     public ResponseEntity<Categorie> createCategorie(@RequestBody Categorie categorie) throws URISyntaxException {
         log.debug("REST request to save Categorie : {}", categorie);
+
+        // Vérifier si une categorie avec le même nom existe déjà
+        Optional<Categorie> existingCategorie = categorieRepository.findByNom(categorie.getNom());
+        if (existingCategorie.isPresent()) {
+            throw new CategoryAlreadyUsedException();
+        }
+
         if (categorie.getId() != null) {
             throw new BadRequestAlertException("A new categorie cannot already have an ID", ENTITY_NAME, "idexists");
         }

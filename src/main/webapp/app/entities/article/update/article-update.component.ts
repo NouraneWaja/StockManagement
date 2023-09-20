@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { IArticle } from '../article.model';
 import { ArticleService } from '../service/article.service';
 import { ICategorie } from 'app/entities/categorie/categorie.model';
 import { CategorieService } from 'app/entities/categorie/service/categorie.service';
+import { CODEBARRES_ALREADY_USED_TYPE } from 'app/config/error.constants';
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ import { CategorieService } from 'app/entities/categorie/service/categorie.servi
 export class ArticleUpdateComponent implements OnInit {
   isSaving = false;
   article: IArticle | null = null;
+  errorCodebarresExists = false;
 
   categoriesSharedCollection: ICategorie[] = [];
 
@@ -52,6 +54,7 @@ export class ArticleUpdateComponent implements OnInit {
   }
 
   save(): void {
+    this.errorCodebarresExists = false;
     this.isSaving = true;
     const article = this.articleFormService.getArticle(this.editForm);
     if (article.id !== null) {
@@ -62,10 +65,22 @@ export class ArticleUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IArticle>>): void {
-    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
-      next: () => this.onSaveSuccess(),
-      error: () => this.onSaveError(),
-    });
+     result.subscribe(
+     (res: HttpResponse<IArticle>) => {
+                this.onSaveSuccess();
+            },
+     (errorResponse: HttpErrorResponse) => {
+          if (errorResponse.status === 400 && errorResponse.error.type === CODEBARRES_ALREADY_USED_TYPE) {
+                // Le code-barres existe déjà
+                this.errorCodebarresExists = true;
+          }
+          else {
+          this.onSaveError()
+          }
+          this.onSaveFinalize();
+          }
+        );
+
   }
 
   protected onSaveSuccess(): void {

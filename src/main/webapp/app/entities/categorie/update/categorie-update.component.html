@@ -21,6 +21,9 @@
         <div class="mb-3">
           <label class="form-label" jhiTranslate="stockManagementApp.categorie.nom" for="field_nom">Nom</label>
           <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+          <div class="form-text text-danger" *ngIf="errorCategoryExists" jhiTranslate="stockManagementApp.categorie.error">
+            <strong>Cette catégorie existe déjà !</strong>
+          </div>
         </div>
 
         <div class="mb-3">
