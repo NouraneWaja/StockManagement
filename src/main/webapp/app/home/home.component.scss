@@ -37,24 +37,38 @@ Main page styles
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: auto;
-  height: auto;
-  border: 1px solid black;
+  width: 40%;
+  height: 20%;
+  border-radius: 10px; /* Coins arrondis */
   margin-top: 50px;
   padding: 20px;
-  background-color: #ACCFEC;
-  color: black;
+  background: linear-gradient(to bottom,#1A237E, #3F7DDE,#6F9EE7); /* Dégradé de couleurs */
+  color: white; /* Couleur du texte */
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.box h2 {
-color: black;
-font-size: 30px;
+
+.box h2, .box h1{
+  color: white;
+  font-size: 25px;
 }
 
-.box h1 {
-color: #CA2456;
-font-size: 25px;
+.img {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('/content/images/users.png') no-repeat center center;
+  background-size: contain;
+}
+
+.img1 {
+  height: 50px;
+  width: 80px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('/content/images/carton.png') no-repeat center center;
+  background-size: contain;
 }
 
 //titre
@@ -80,6 +94,7 @@ box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 border: 0.5px solid #1a237e;
 margin: 100px 10px;
 width: 300px;
+border-radius: 10px;
 }
 
 .conn {
@@ -97,6 +112,7 @@ box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 border: 0.5px solid #1a237e;
 margin: 100px 10px;
 width: 300px;
+border-radius: 10px;
 }
 
 .creer {

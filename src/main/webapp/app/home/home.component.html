@@ -11,17 +11,17 @@
       <div *ngSwitchCase="true" class="menu">
         <div>
           <fa-icon icon="calendar-alt" [fixedWidth]="true"></fa-icon>
-        <span id="accueil" *ngIf="account">{{ currentDate }}</span>
-      </div>
+          <span id="accueil" *ngIf="account">{{ currentDate | date : 'dd/MM/yyyy HH:mm' }}</span>
+        </div>
 
         <div class="container">
           <div *ngIf="isAdmin" class="box">
-            <fa-icon icon="users" [fixedWidth]="true"></fa-icon>
+            <span class="img"></span>
             <h2 jhiTranslate="home.utilisateur">Nombre total d'utilisateurs</h2>
             <h1>{{ numberOfUsers }}</h1>
           </div>
           <div class="box">
-            <fa-icon icon="list" [fixedWidth]="true"></fa-icon>
+            <span class="img1"></span>
             <h2 jhiTranslate="home.article">Nombre total d'articles</h2>
             <h1>{{ numberOfArticles }}</h1>
           </div>
